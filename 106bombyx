@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+## 106bombyx for 106bombyx in /home/arthur.melin/Code/106bombyx
+##
+## Made by Arthur Melin
+## Login   <arthur.melin@epitech.eu>
+##
+## Started on  Fri Feb 10 18:28:37 2017 Arthur Melin
+## Last update Fri Feb 10 18:30:11 2017 Arthur Melin
+##
+
+import sys
+import bombyx
+
+if __name__ == "__main__":
+    sys.exit(bombyx.main(sys.argv))
