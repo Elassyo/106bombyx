@@ -1,2 +1,5 @@
 # Cached python modules
 *.pyc
+
+# GNU plot config
+drawer.gnu
