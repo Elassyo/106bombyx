@@ -5,10 +5,19 @@
 ## Login   <arthur.melin@epitech.eu>
 ##
 ## Started on  Fri Feb 10 18:32:16 2017 Arthur Melin
-## Last update Sat Feb 11 15:20:46 2017 Arthur Melin
+## Last update Sat Feb 11 15:41:20 2017 Arthur Melin
 ##
 
 import sys
+
+def bombyx(x, k):
+    return (k * x * (1000 - x) / 1000)
+
+def bombyx_gen(n, k, i0):
+    x = float(n)
+    for i in range(i0):
+        x = bombyx(x, k)
+    return (x)
 
 def growth(args):
     try:
@@ -24,7 +33,7 @@ def growth(args):
     x = float(n)
     for i in range(100):
         print(i + 1, '%.2f' % x)
-        x = k * x * (1000 - x) / 1000
+        x = bombyx(x, k)
 
     return (0)
 
@@ -39,6 +48,15 @@ def scheme(args):
         raise Exception('error: negative number of first-gen individuals')
     if i0 > i1:
         raise Exception('error: initial generation after final generation')
+
+    k = 1.00
+    while k < 4.00:
+        x = bombyx_gen(n, k, i0)
+        for i in range(i1 - i0 + 1):
+            print ('%.2f' % k, '%.2f' % x)
+            x = bombyx(x, k)
+        k += 0.01
+
     return (0)
 
 def usage(output):
