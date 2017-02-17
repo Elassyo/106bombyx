@@ -46,6 +46,8 @@ def scheme(args):
         raise Exception('error: invalid arguments') from err
     if n < 0:
         raise Exception('error: negative number of first-gen individuals')
+    if i0 < 1 or i1 < 1:
+        raise Exception('error: negative generation number')
     if i0 > i1:
         raise Exception('error: initial generation after final generation')
 
@@ -53,7 +55,7 @@ def scheme(args):
     while k < 4.00:
         x = bombyx_gen(n, k, i0)
         for i in range(i1 - i0 + 1):
-            print ('%.2f' % k, '%.2f' % x)
+            print ('%.2f' % round(k, 2), '%.2f' % round(x, 2))
             x = bombyx(x, k)
         k += 0.01
 
