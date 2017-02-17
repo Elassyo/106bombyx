@@ -5,16 +5,17 @@
 ## Login   <arthur.melin@epitech.eu>
 ##
 ## Started on  Fri Feb 10 18:32:16 2017 Arthur Melin
-## Last update Sat Feb 11 15:41:20 2017 Arthur Melin
+## Last update Fri Feb 17 09:22:01 2017 Arthur Melin
 ##
 
+import decimal
 import sys
 
 def bombyx(x, k):
-    return (k * x * (1000 - x) / 1000)
+    return k * x * (1000 - x) / 1000
 
 def bombyx_gen(n, k, i0):
-    x = float(n)
+    x = n
     for i in range(i0):
         x = bombyx(x, k)
     return (x)
@@ -22,7 +23,7 @@ def bombyx_gen(n, k, i0):
 def growth(args):
     try:
         n = int(args[1])
-        k = float(args[2])
+        k = decimal.Decimal(args[2])
     except ValueError as err:
         raise Exception('error: invalid arguments') from err
     if n < 0:
@@ -30,7 +31,7 @@ def growth(args):
     if not 1 <= k <= 4:
         raise Exception('error: growth rate not between 1 and 4')
 
-    x = float(n)
+    x = decimal.Decimal(n)
     for i in range(100):
         print(i + 1, '%.2f' % x)
         x = bombyx(x, k)
@@ -46,16 +47,20 @@ def scheme(args):
         raise Exception('error: invalid arguments') from err
     if n < 0:
         raise Exception('error: negative number of first-gen individuals')
+    if i0 < 1 or i1 < 1:
+        raise Exception('error: generation numbers must be positive')
     if i0 > i1:
         raise Exception('error: initial generation after final generation')
 
-    k = 1.00
+    n = decimal.Decimal(n)
+    k = decimal.Decimal(1)
+    inc = decimal.Decimal('0.01')
     while k < 4.00:
         x = bombyx_gen(n, k, i0)
         for i in range(i1 - i0 + 1):
             print ('%.2f' % k, '%.2f' % x)
             x = bombyx(x, k)
-        k += 0.01
+        k += inc
 
     return (0)
 
@@ -81,6 +86,6 @@ def main(args):
         else:
             usage(sys.stderr)
             return (84)
-    except Exception as ex:
+    except ValueError as ex:
         print(ex.args[0], file=sys.stderr)
         return (84)
