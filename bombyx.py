@@ -11,11 +11,11 @@
 import sys
 
 def bombyx(x, k):
-    return (k * x * (1000 - x) / 1000)
+    return k * x * (1000 - x) / 1000
 
 def bombyx_gen(n, k, i0):
     x = float(n)
-    for i in range(i0):
+    for i in range(1, i0):
         x = bombyx(x, k)
     return (x)
 
@@ -55,7 +55,7 @@ def scheme(args):
     while k < 4.00:
         x = bombyx_gen(n, k, i0)
         for i in range(i1 - i0 + 1):
-            print ('%.2f' % round(k, 2), '%.2f' % round(x, 2))
+            print('%.2f' % k, '%.2f' % x)
             x = bombyx(x, k)
         k += 0.01
 
