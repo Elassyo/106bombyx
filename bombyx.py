@@ -11,7 +11,8 @@
 import sys
 
 def bombyx(x, k):
-    return k * x * (1000 - x) / 1000
+    x = k * x * (1000 - x) / 1000
+    return 0 if x < 0 else x
 
 def bombyx_gen(n, k, i0):
     x = float(n)
